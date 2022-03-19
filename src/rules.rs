@@ -16,9 +16,14 @@ pub struct Variable {
 
 #[derive(Default, Debug, Deserialize)]
 pub struct Rules {
+    pub bounds: Bounds,
+    pub ci: bool,
+}
+
+#[derive(Default, Debug, Deserialize)]
+pub struct Bounds {
     pub upper: f64,
     pub lower: f64,
-    pub ci: bool,
 }
 
 impl Config {

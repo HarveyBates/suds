@@ -4,8 +4,6 @@ use serde_json::{Result, Value};
 use std::collections::HashMap;
 pub use suds::{methods, rules};
 
-type JsonMap = HashMap<String, Value>;
-
 #[test]
 #[ignore]
 fn load_rules() {
@@ -42,7 +40,7 @@ fn load_message() {
       }"#
     .to_lowercase();
 
-    let msg: JsonMap = serde_json::from_str(&data).expect("Unpack error");
+    let msg: HashMap<String, Value> = serde_json::from_str(&data).expect("Unpack error");
 
     for (key, value) in msg.iter() {
         methods::bounds::upper(&key, &value, &rules_config);

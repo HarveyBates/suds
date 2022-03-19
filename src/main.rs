@@ -1,7 +1,9 @@
 use actix_web::{App, HttpServer};
 
+mod api;
+mod common;
+mod methods;
 mod rules;
-mod webhook;
 
 #[actix_web::main]
 pub async fn main() -> std::io::Result<()> {
@@ -10,8 +12,7 @@ pub async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
             .app_data(rules::Config::new())
-            .service(webhook::greet)
-            .service(webhook::uplink)
+            .service(api::uplink)
     })
     .bind(("127.0.0.1", 8080))?
     .run()
